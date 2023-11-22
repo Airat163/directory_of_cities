@@ -8,7 +8,12 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class CityStatistics {
-    private final FileParser fileParser = new FileParser();
+    private final FileParser fileParser;
+
+    public CityStatistics(FileParser fileParser) {
+        this.fileParser = fileParser;
+    }
+
     private Map<String, Integer> countingNumberBuildings() {
         Map<String, Integer> map = new HashMap<>();
         List<Address> addressList = fileParser.getAddressList();

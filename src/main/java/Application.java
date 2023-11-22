@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Application {
+   // C:\\Users\\Sagitovs\\Desktop\\address.csv
     private static final String ENTER_PATH_FILE = "\nВведите путь к файлу или введите команду: exit";
     private static final String INCORRECT_FILE_FORMAT = "Введен некорректный формат файла";
     private static final String FILE_NOT_FOUND = "\nфайл не найден";
@@ -25,7 +26,7 @@ public class Application {
                 }
                 FileParser fileParser = new FileParser();
                 fileParser.parse(path);
-                CityStatistics cityStatistics = new CityStatistics();
+                CityStatistics cityStatistics = new CityStatistics(fileParser);
                 cityStatistics.printAndCountDuplicates();
                 cityStatistics.printCountingBuildingsCity();
 
