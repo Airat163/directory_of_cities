@@ -8,9 +8,10 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class CityStatistics {
+    private final FileParser fileParser = new FileParser();
     private Map<String, Integer> countingNumberBuildings() {
         Map<String, Integer> map = new HashMap<>();
-        List<Address> addressList = FileParser.getAddressList();
+        List<Address> addressList = fileParser.getAddressList();
 
         for (Address address : addressList) {
             map.merge(address.getCity() + " " + address.getFloor(), 1, Integer::sum);
@@ -26,7 +27,7 @@ public class CityStatistics {
     }
 
     public void printAndCountDuplicates() {
-        Map<Address, Integer> occurrences = FileParser.getAddressList().stream()
+        Map<Address, Integer> occurrences = fileParser.getAddressList().stream()
                 .collect(Collectors.toMap(Function.identity(), v -> 1, Integer::sum));
 
         occurrences.entrySet().stream()

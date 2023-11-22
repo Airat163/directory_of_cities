@@ -5,24 +5,26 @@ import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+
 public class FileParser {
-    private static List<Address> addressList;
+    private List<Address> addressList;
 
-    public static void parse(String path) throws IOException, JDOMException {
+    public void parse(String path) throws IOException, JDOMException {
 
-        if (path.endsWith("csv")) {
+        if (path.toLowerCase().endsWith("csv")) {
             parserCsv(path);
-        } else if (path.endsWith("xml")) {
+        } else if (path.toLowerCase().endsWith("xml")) {
             parserXml(path);
         } else {
             throw new IllegalArgumentException();
         }
     }
 
-    private static void parserXml(String input) throws IOException, JDOMException {
+    private void parserXml(String input) throws IOException, JDOMException {
         File inputFile = new File(input);
         SAXBuilder saxBuilder = new SAXBuilder();
         Document document = saxBuilder.build(inputFile);
@@ -37,7 +39,7 @@ public class FileParser {
         }
     }
 
-    private static void parserCsv(String input) throws IOException {
+    private void parserCsv(String input) throws IOException {
         FileReader fileReader = new FileReader(input);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         addressList = new ArrayList<>();
@@ -52,7 +54,7 @@ public class FileParser {
         }
     }
 
-    public static List<Address> getAddressList() {
+    public List<Address> getAddressList() {
         return addressList;
     }
 }
