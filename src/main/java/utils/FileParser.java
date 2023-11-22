@@ -5,12 +5,12 @@ import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FileParser {
+
     private List<Address> addressList;
 
     public void parse(String path) throws IOException, JDOMException {
